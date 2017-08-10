@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:paddingBottom="@dimen/spacing"
-        android:text="@string/question" />
+        android:text="@string/question"
+        android:textSize="@dimen/Ques_Ans_TextViewTextSize" />
 
     <ImageView
         android:id="@+id/flagImageView"
@@ -39,7 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/guess_country" />
+        android:text="@string/guess_country"
+        android:textSize="@dimen/Ques_Ans_TextViewTextSize" />
 
     <LinearLayout
         android:id="@+id/row1LinearLayout"
@@ -58,14 +60,14 @@
             android:text="Button" />
 
         <Button
-            android:textColor="@color/button_text_color"
-            style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/button2"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:lines="2"
-            android:text="Button" />
+            android:text="Button"
+            android:textColor="@color/button_text_color" />
     </LinearLayout>
 
     <LinearLayout
