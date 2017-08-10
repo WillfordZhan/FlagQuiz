@@ -3,4 +3,5 @@
     <dimen name="activity_horizenal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="spacing">8dp</dimen>
+    <dimen name="answerSize">30sp</dimen>
 </resources>

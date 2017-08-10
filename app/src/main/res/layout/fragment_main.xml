@@ -17,7 +17,7 @@
         android:id="@+id/questionNumberTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:paddingBottom="@dimen/spacing"
         android:text="@string/question" />
 
@@ -26,13 +26,136 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        app:srcCompat="@mipmap/ic_launcher"
         android:layout_marginBottom="@dimen/spacing"
         android:layout_marginLeft="@dimen/activity_horizenal_margin"
         android:layout_marginRight="@dimen/activity_horizenal_margin"
-        android:layout_weight="1"
+        android:layout_weight="0.64"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_description"
         android:scaleType="fitCenter" />
+
+    <TextView
+        android:id="@+id/guessCountryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/guess_country" />
+
+    <LinearLayout
+        android:id="@+id/row1LinearLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:textColor="@color/button_text_color"
+            android:id="@+id/button1"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="2"
+            android:text="Button" />
+
+        <Button
+            android:textColor="@color/button_text_color"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="2"
+            android:text="Button" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row2LinearLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:textColor="@color/button_text_color"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/button3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="2"
+            android:text="Button" />
+
+        <Button
+            android:textColor="@color/button_text_color"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/button4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="2"
+            android:text="Button" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row3LinearLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:textColor="@color/button_text_color"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/button5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="2"
+            android:text="Button" />
+
+        <Button
+            android:textColor="@color/button_text_color"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/button6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="2"
+            android:text="Button" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row4LinearLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:textColor="@color/button_text_color"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/button7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="2"
+            android:text="Button" />
+
+        <Button
+            android:textColor="@color/button_text_color"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/button8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="2"
+            android:text="Button" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/answerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:textSize="@dimen/answerSize"
+        android:textStyle="bold"/>
+
 </LinearLayout>
 
