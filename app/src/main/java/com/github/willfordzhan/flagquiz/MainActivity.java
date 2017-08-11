@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
         // register listener for SharedPreferences changes
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(preferenceChangeListener);
-        // Todo: to implement the preferenceChangeListener class.
         // determine screen size
         int screenSize = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
 
