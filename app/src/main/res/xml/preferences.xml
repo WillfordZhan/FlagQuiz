@@ -15,6 +15,6 @@
         android:title="@string/world_regions"
         android:summary="@string/world_regions_description"
         android:persistent="true"
-        android:defaultValue="@array/regions_list"/>
+        android:defaultValue="@array/regions_list" />
 
 </PreferenceScreen>
