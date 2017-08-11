@@ -16,6 +16,5 @@
         android:summary="@string/world_regions_description"
         android:persistent="true"
         android:defaultValue="@array/regions_list"/>
-    //Todo: fix the problem
 
 </PreferenceScreen>
