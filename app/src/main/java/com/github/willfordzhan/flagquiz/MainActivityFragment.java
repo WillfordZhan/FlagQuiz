@@ -62,9 +62,39 @@ public class MainActivityFragment extends Fragment {
     public MainActivityFragment() {
     }
 
+    // configure the MainActivityFragment when its view is created
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        super.onCreateView(inflater,container,savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        fileNameList = new ArrayList<>();
+        quizCountiesList = new ArrayList<>();
+        random = new SecureRandom();
+        handler = new Handler();
+
+        shakeAnimation = AnimationUtils.loadAnimation(getActivity(),R.anim.incorrect_shake);
+        shakeAnimation.setRepeatCount(3);
+
+        quizLinearLayout = (LinearLayout) view.findViewById(R.id.quizLinearLayout);
+        questionNumberTextView = (TextView) view.findViewById(R.id.questionNumberTextView);
+        flagImageView = (ImageView) view.findViewById(R.id.flagImageView);
+        guessLinearLayouts = new LinearLayout[4];
+
+        guessLinearLayouts[0] = (LinearLayout) view.findViewById(R.id.row1LinearLayout);
+        guessLinearLayouts[1] = (LinearLayout) view.findViewById(R.id.row2LinearLayout);
+        guessLinearLayouts[2] = (LinearLayout) view.findViewById(R.id.row3LinearLayout);
+        guessLinearLayouts[3] = (LinearLayout) view.findViewById(R.id.row4LinearLayout);
+
+        for (LinearLayout row : guessLinearLayouts){
+            for (int column = 0; column < row.getChildCount(); column++){
+                Button button = (Button) row.getChildAt(column);
+                button.setOnClickListener(guessButtonListener);
+            }
+        }
+
+        questionNumberTextView.setText(getString(R.string.question, 1, FLAG_IN_QUIZ));
+        return view;
     }
 }
+
