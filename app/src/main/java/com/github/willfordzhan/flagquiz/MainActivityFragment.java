@@ -202,8 +202,16 @@ public class MainActivityFragment extends Fragment {
 
                 // get country name and set it as newGuessButton's text
                 String filename = fileNameList.get((row * 2) + column);
+                newGuessButton.setText(getCountryName(filename));
             }
         }
+
+        // randomly replace one Button with the correct Answer
+        int row = random.nextInt(guessRows);
+        int column = random.nextInt(2);
+        LinearLayout randomRow = guessLinearLayouts[row];
+        String countryName = getCountryName(correctAnswer);
+        ((Button)randomRow.getChildAt(column)).setText(countryName);
     }
 }
 
