@@ -213,5 +213,46 @@ public class MainActivityFragment extends Fragment {
         String countryName = getCountryName(correctAnswer);
         ((Button)randomRow.getChildAt(column)).setText(countryName);
     }
+
+    // pass the country flag file name and returns the country name
+    private String getCountryName(String name){
+        return name.substring(name.indexOf('-'+1)).replace('_',' ');
+    }
+
+    // animates the entire quizLinearLayout on or off screen
+    private void animate(boolean animateOut){
+        // prevent animation into the UI for the first flag
+        if(correctAnswers == 0){
+            return;
+        }
+        // calculate center x and center y
+        int centerX = (quizLinearLayout.getLeft() + quizLinearLayout.getRight())/2;
+        int centerY = (quizLinearLayout.getTop() + quizLinearLayout.getBottom())/2;
+
+        // calculate animation radius
+        int radius = Math.max(quizLinearLayout.getWidth(),quizLinearLayout.getHeight());
+
+        Animator animator;
+
+        // if the quizLinearLayout should animate out rather than in
+        if (animateOut){
+            // create circular reveal animation
+            animator = ViewAnimationUtils.createCircularReveal(quizLinearLayout,centerX,centerY,radius,0);
+            animator.addListener(
+                    new AnimatorListenerAdapter() {
+                    @Override
+                    // called when the animation finishes
+                    public void onAnimationEnd(Animator animation) {
+                    loadNextFlag();
+                    }
+                }
+            );
+        }
+        else{ // if the quizLinearLayout should animate in
+            animator = ViewAnimationUtils.createCircularReveal(quizLinearLayout, centerX, centerY, 0, radius);
+        }
+        animator.setDuration(500);
+        animator.start();
+    }
 }
 
