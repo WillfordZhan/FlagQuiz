@@ -219,7 +219,7 @@ public class MainActivityFragment extends Fragment {
         return name.substring(name.indexOf('-'+1)).replace('_',' ');
     }
 
-    // animates the entire quizLinearLayout on or off screen
+    // animates the entire quizLinearLayout in or off screen
     private void animate(boolean animateOut){
         // prevent animation into the UI for the first flag
         if(correctAnswers == 0){
@@ -251,8 +251,76 @@ public class MainActivityFragment extends Fragment {
         else{ // if the quizLinearLayout should animate in
             animator = ViewAnimationUtils.createCircularReveal(quizLinearLayout, centerX, centerY, 0, radius);
         }
-        animator.setDuration(500);
-        animator.start();
+        animator.setDuration(500); // set animation duration to 500ms
+        animator.start(); // start the animation
+    }
+    private OnClickListener guessButtonListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Button guessButton = (Button)v;
+            String guess = guessButton.getText().toString();
+            String answer = getCountryName(correctAnswer);
+            ++totalGuesses; // first increment number of guesses user has made
+
+            if (guess.equals(answer)) { // if the guess is correct
+                ++correctAnswers; // increment the number of correct answers
+                // display correct answer in green text
+                answerTextView.setText(answer + "!");
+                answerTextView.setTextColor(getResources().getColor(R.color.correct_answer, getContext().getTheme()));
+                disableButtons(); // disable all the buttons
+
+                // if the user has correctly identified FLAG_IN_QUIZ flags
+                if (correctAnswers == FLAG_IN_QUIZ) {
+                    // DialogFragment to display quiz stats and start new quiz
+                    DialogFragment quizResults = new DialogFragment() {
+                        // // TODO: 2017/8/15 solve the static fragment problem 
+                        // create and AlertDialog and return it
+                        @Override
+                        public Dialog onCreateDialog(Bundle bundle) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setMessage(
+                                    getString(R.string.results, totalGuesses, (1000 / (double) totalGuesses))
+                            );
+                            builder.setPositiveButton(R.string.reset_quiz,
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            resetQuiz();
+                                        }
+                                    }
+                            );
+                            return builder.create();
+                        }
+                    };
+                    quizResults.setCancelable(false);
+                    quizResults.show(getFragmentManager(), "quiz results");
+                } else { // answer is correct but the quiz is not over
+                    // load the next flag after a 2s delay
+                    handler.postDelayed(
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    animate(true);
+                                }
+                            }, 2000);
+                }
+            }
+            else{ // the answer isn't correct
+                flagImageView.startAnimation(shakeAnimation);
+                // display "incorrect!" in red
+                answerTextView.setText(R.string.incorrect_answer);
+                answerTextView.setTextColor(getResources().getColor(R.color.incorrect_answer,getContext().getTheme()));
+                guessButton.setEnabled(true);
+            }
+        }
+    };
+    
+    // utility method that disables all answer buttons
+    private void disableButtons(){
+        for (int row = 0; row < guessRows; row++){
+            LinearLayout guessRow = guessLinearLayouts[row];
+            for (int i = 0; i < guessRow.getChildCount(); i++)
+                guessRow.getChildAt(i).setEnabled(true);
+        }
     }
 }
 
